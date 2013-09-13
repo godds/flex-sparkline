@@ -477,6 +477,12 @@ package com.scottlogic.sparkline
             renderData = new SparklineRenderData();
             if (dataProvider)
             {
+                if (normalRange)
+                {
+                    renderData.yMin.yNumber = Math.min(normalRange[0], normalRange[1]);
+                    renderData.yMax.yNumber = Math.max(normalRange[0], normalRange[1]);
+                }
+
                 var i:uint = 0;
                 var item:SparklineItem;
                 // build up the sparkline items, transform the value to a number
@@ -533,8 +539,8 @@ package com.scottlogic.sparkline
                     renderData.normalRangeMin = new SparklineItem();
                     renderData.normalRangeMax = new SparklineItem();
 
-                    renderData.normalRangeMin.yValue = normalRange[0];
-                    renderData.normalRangeMax.yValue = normalRange[1];
+                    renderData.normalRangeMin.yValue = Math.min(normalRange[0], normalRange[1]);
+                    renderData.normalRangeMax.yValue = Math.max(normalRange[0], normalRange[1]);
 
                     var minY:Number =
                         (renderData.normalRangeMin.yNumber - renderData.yMin.yNumber) / yMinMaxDelta;

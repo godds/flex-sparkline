@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    xmlns:sparkline="com.scottlogic.sparkline.*"
+    width="445" height="85"
+>
+    <s:layout>
+        <s:VerticalLayout
+            paddingBottom="0" paddingTop="0"
+            paddingLeft="0" paddingRight="0"
+            gap="5"
+            />
+    </s:layout>
+
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayList;
+
+            [Bindable]
+            private var spark:ArrayList =
+                new ArrayList([1,4,0,-2,5,2,-1,3,8,2,4,0,5,0,-3,3,9,4,6,1,6]);
+            [Bindable]
+            private var column:ArrayList =
+                new ArrayList([3,0,5,0,-3,3,9,4,6,5,0,-5,3,9,4,1,6,4,0,-2,5,2,-1,3,8,2,4]);
+            [Bindable]
+            private var ternary:ArrayList =
+                new ArrayList([0,2,0,4,-1,3,0,2,-1,3,8,2,4,0,5,0,-3,3,8,5,0,-3,3,9,4]);
+        ]]>
+    </fx:Script>
+
+    <!-- Sparkline examples -->
+    <s:HGroup width="100%" height="100%" gap="15">
+        <sparkline:Sparkline dataProvider="{spark}" />
+        <sparkline:Sparkline dataProvider="{spark}" normalRange="[1,5]" />
+        <sparkline:Sparkline
+            dataProvider="{spark}"
+            xMaxMarkerEnabled="true"
+            yMinMarkerEnabled="true" yMaxMarkerEnabled="true"
+        />
+        <sparkline:Sparkline
+            dataProvider="{spark}"
+            normalRange="[0,6]"
+            xMaxMarkerEnabled="true" xMinMarkerEnabled="true"
+            yMinMarkerEnabled="true" yMaxMarkerEnabled="true"
+        >
+            <sparkline:normalRangeFill>
+                <s:SolidColor color="0x2963a3" alpha="0.1" />
+            </sparkline:normalRangeFill>
+            <sparkline:yMaxFill>
+                <s:SolidColor color="0x00a700" alpha="0.9" />
+            </sparkline:yMaxFill>
+            <sparkline:yMinFill>
+                <s:SolidColor color="0xFF0000" alpha="0.9" />
+            </sparkline:yMinFill>
+        </sparkline:Sparkline>
+    </s:HGroup>
+
+    <!-- Column sparkline examples -->
+    <s:HGroup width="100%" height="100%" gap="15">
+        <sparkline:ColumnSparkline dataProvider="{column}" />
+        <sparkline:ColumnSparkline dataProvider="{column}">
+            <sparkline:positiveFill>
+                <s:SolidColor color="0x00a700" />
+            </sparkline:positiveFill>
+            <sparkline:negativeFill>
+                <s:SolidColor color="0xff0000" />
+            </sparkline:negativeFill>
+            <sparkline:zeroStroke>
+                <s:SolidColorStroke color="0x000000" />
+            </sparkline:zeroStroke>
+        </sparkline:ColumnSparkline>
+        <sparkline:ColumnSparkline dataProvider="{column}" zeroValue="-5" />
+        <sparkline:ColumnSparkline dataProvider="{column}" zeroValue="-5">
+            <sparkline:positiveFill>
+                <s:SolidColor alpha="0" />
+            </sparkline:positiveFill>
+            <sparkline:positiveStroke>
+                <s:SolidColorStroke color="0x828282" />
+            </sparkline:positiveStroke>
+        </sparkline:ColumnSparkline>
+    </s:HGroup>
+
+    <!-- Ternary sparkline examples -->
+    <s:HGroup width="100%" height="100%" gap="15">
+        <sparkline:TernarySparkline dataProvider="{ternary}" />
+        <sparkline:TernarySparkline dataProvider="{ternary}">
+            <sparkline:positiveFill>
+                <s:SolidColor color="0x00a700" />
+            </sparkline:positiveFill>
+            <sparkline:negativeFill>
+                <s:SolidColor color="0xff0000" />
+            </sparkline:negativeFill>
+            <sparkline:zeroStroke>
+                <s:SolidColorStroke color="0x000000" />
+            </sparkline:zeroStroke>
+        </sparkline:TernarySparkline>
+        <sparkline:TernarySparkline dataProvider="{ternary}" zeroValue="2" />
+        <sparkline:TernarySparkline dataProvider="{ternary}" zeroValue="2">
+            <sparkline:positiveFill>
+                <s:SolidColor alpha="0" />
+            </sparkline:positiveFill>
+            <sparkline:positiveStroke>
+                <s:SolidColorStroke color="0x828282" />
+            </sparkline:positiveStroke>
+            <sparkline:negativeFill>
+                <s:SolidColor alpha="0" />
+            </sparkline:negativeFill>
+            <sparkline:negativeStroke>
+                <s:SolidColorStroke color="0x828282" />
+            </sparkline:negativeStroke>
+        </sparkline:TernarySparkline>
+    </s:HGroup>
+
+</s:Application>
